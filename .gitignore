@@ -1,0 +1,71 @@
+# Flutter/Dart
+**.iml
+**/.idea/
+**/.dart_tool/
+**/build/
+**/.packages
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/pubspec.lock
+
+# Android
+**/android/.gradle/
+**/android/.idea/
+**/android/build/
+**/android/app/build/
+**/android/gradle/
+**/*.keystore
+**/local.properties
+
+# iOS
+**/ios/.symlinks/
+**/ios/Pods/
+**/ios/.build/
+**/ios/*.xcworkspace/
+**/ios/*.xcodeproj/
+**/ios/Runner.xcodeproj/project.xcworkspace/
+**/ios/Runner.xcodeproj/xcshareddata/
+
+# macOS
+**/macos/Pods/
+**/macos/.build/
+**/macos/Flutter/GeneratedPluginRegistrant.swift
+**/macos/Flutter/ephemeral/
+
+# Linux
+**/linux/flutter/ephemeral/
+**/linux/.dart_tool/
+**/linux/build/
+
+# Windows
+**/windows/flutter/ephemeral/
+**/windows/.dart_tool/
+**/windows/build/
+
+# Web
+**/web/vendor/
+
+# Model files (large binaries)
+**/assets/models/*.gguf
+**/assets/models/*.bin
+**/assets/models/*.safetensors
+
+# Python
+__pycache__/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.venv/
+**/venv/
+backend/__pycache__/
+backend/venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# PDFs (reference material, not part of app)
+blank.pdf
