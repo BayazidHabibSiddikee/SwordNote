@@ -21,46 +21,55 @@ endif()
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${ANDROID_ABI})
 
 # =============================================================================
-# LLAMA.CPP (Primary inference engine)
-# =============================================================================
-set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp)
-
-# =============================================================================
-# SWORDNOTE JNI BRIDGE
+# LLAMA.CPP + SWORDNOTE JNI BRIDGE
 # Mirrors CupCake's llama_jni.cpp pattern.
-# Exposes: initModel, recognizeImage, generateText, release, isLoaded
+# Guarded: llama.cpp lives at third_party/llama.cpp (git submodule / manual
+# copy from ../CupCake/app/src/main/cpp/third_party/llama.cpp). When absent,
+# CMake configures cleanly and the app builds without on-device inference —
+# Phase 2 runs inference on the Zero-To-CAD server instead.
 # =============================================================================
-add_library(swordnote_jni SHARED
-    swordnote_jni.cpp
-)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp/CMakeLists.txt")
 
-target_include_directories(swordnote_jni PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp/ggml/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp/ggml/src
-)
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp)
 
-target_link_libraries(swordnote_jni PRIVATE
-    llama
-    ${CMAKE_DL_LIBS}
-    ${CMAKE_THREAD_LIBS_INIT}
-    log
-    android
-)
+    # Exposes: initModel, recognizeImage, generateText, release, isLoaded
+    add_library(swordnote_jni SHARED
+        swordnote_jni.cpp
+    )
 
-target_compile_options(swordnote_jni PRIVATE
-    -O3
-    -DNDEBUG
-    -Wall -Wextra -Wpedantic
-    -Wno-unused-parameter
-    -DGGML_USE_ACCELERATE=OFF
-    -DGGML_USE_METAL=OFF
-    -DGGML_USE_CUDA=OFF
-    -DGGML_USE_VULKAN=OFF
-    -DGGML_USE_SYCL=OFF
-    -DGGML_USE_RPC=OFF
-    -DGGML_USE_OPENMP=OFF
-    -DGGML_USE_THREADS=ON
-)
+    target_include_directories(swordnote_jni PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp/ggml/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp/ggml/src
+    )
+
+    target_link_libraries(swordnote_jni PRIVATE
+        llama
+        ${CMAKE_DL_LIBS}
+        ${CMAKE_THREAD_LIBS_INIT}
+        log
+        android
+    )
+
+    target_compile_options(swordnote_jni PRIVATE
+        -O3
+        -DNDEBUG
+        -Wall -Wextra -Wpedantic
+        -Wno-unused-parameter
+        -DGGML_USE_ACCELERATE=OFF
+        -DGGML_USE_METAL=OFF
+        -DGGML_USE_CUDA=OFF
+        -DGGML_USE_VULKAN=OFF
+        -DGGML_USE_SYCL=OFF
+        -DGGML_USE_RPC=OFF
+        -DGGML_USE_OPENMP=OFF
+        -DGGML_USE_THREADS=ON
+    )
+else()
+    message(WARNING
+        "third_party/llama.cpp not found — skipping swordnote_jni. "
+        "Server-mode build (Phase 2). Add llama.cpp to enable on-device "
+        "inference.")
+endif()
