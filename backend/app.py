@@ -40,7 +40,7 @@ from zero_to_cad import (
 MAX_IMAGES = 8
 MAX_BYTES = 10 * 1024 * 1024
 
-app = FastAPI(title="SwordTrack Zero-To-CAD", version="0.2.0")
+app = FastAPI(title="SwordNote Zero-To-CAD", version="0.2.0")
 
 
 class GenerateB64(BaseModel):

@@ -1,4 +1,4 @@
-package com.swordtrack.swordtrack
+package com.swordnote.swordnote
 
 import io.flutter.embedding.android.FlutterActivity
 

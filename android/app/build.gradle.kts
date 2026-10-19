@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.swordtrack.swordtrack"
+    namespace = "com.swordnote.swordnote"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -14,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.swordtrack.swordtrack"
+        applicationId = "com.swordnote.swordnote"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -64,7 +64,7 @@ android {
 
     externalNativeBuild {
         cmake {
-            path = file("src/main/cpp/swordtrack/CMakeLists.txt")
+            path = file("src/main/cpp/swordnote/CMakeLists.txt")
             version = "3.22.1"
         }
     }
@@ -76,7 +76,7 @@ android {
 
     packagingOptions {
         jniLibs {
-            pickFirsts.add("lib/swordtrack_jni.so")
+            pickFirsts.add("lib/swordnote_jni.so")
         }
     }
 }

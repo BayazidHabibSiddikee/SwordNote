@@ -1,4 +1,4 @@
-# SwordTrack
+# SwordNote
 
 STEM Smart Notebook for engineering students — an infinite canvas where your handwritten notes come alive.
 
@@ -43,9 +43,9 @@ lib/
     └── widgets/                 # Reusable components
 android/
 └── app/src/main/cpp/
-    └── swordtrack/              # JNI bridge mirroring CupCake's llama_jni.cpp
+    └── swordnote/              # JNI bridge mirroring CupCake's llama_jni.cpp
         ├── CMakeLists.txt
-        └── swordtrack_jni.cpp
+        └── swordnote_jni.cpp
 ```
 
 ## Getting started

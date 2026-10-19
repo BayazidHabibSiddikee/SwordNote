@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// Simple API client for backend services (Future Phase 2).
 /// Currently a placeholder — no network calls are made in the initial build.
 class ApiClient {
-  static const String baseUrl = 'https://api.swordtrack.dev/v1';
+  static const String baseUrl = 'https://api.swordnote.dev/v1';
 
   // TODO: Add dio client, auth headers, etc. when backend is ready.
   ApiClient();

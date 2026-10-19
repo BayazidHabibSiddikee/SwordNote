@@ -17,7 +17,7 @@ abstract class AppUtils {
 
   /// Debounce a function call.
   static Timer? _debounceTimer;
-  static void debounce(VoidCallback fn, [Duration duration = const Duration(milliseconds: 300)]) {
+  static void debounce(void Function() fn, [Duration duration = const Duration(milliseconds: 300)]) {
     _debounceTimer?.cancel();
     _debounceTimer = Timer(duration, fn);
   }

@@ -3,5 +3,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app.dart';
 
 void main() {
-  runApp(const ProviderScope(child: SwordTrackApp()));
+  runApp(const ProviderScope(child: SwordNoteApp()));
 }

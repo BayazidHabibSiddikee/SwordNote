@@ -12,7 +12,7 @@ import 'models.dart';
 /// and exposes a simple `recognizeContent` API for the canvas feature.
 ///
 /// In the initial build this is a **stub** that simulates recognition results.
-/// The native bridge (`android/app/src/main/cpp/swordtrack/`) is scaffolded
+/// The native bridge (`android/app/src/main/cpp/swordnote/`) is scaffolded
 /// but not yet compiled — see the README for setup steps.
 class ModelService {
   static const _kModelFileName = 'qwen2.5-0.5b-q4_0.gguf';

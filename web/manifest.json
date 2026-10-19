@@ -1,6 +1,6 @@
 {
-    "name": "swordtrack",
-    "short_name": "swordtrack",
+    "name": "swordnote",
+    "short_name": "swordnote",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

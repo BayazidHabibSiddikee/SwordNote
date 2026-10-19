@@ -1,6 +1,6 @@
 /// Common constants used across the app.
 abstract class AppConstants {
-  static const String appName = 'SwordTrack';
+  static const String appName = 'SwordNote';
   static const String appVersion = '1.0.0';
   static const int maxStrokePoints = 1000;
   static const double minStrokeLength = 5.0;

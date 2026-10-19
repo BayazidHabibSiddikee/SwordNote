@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22.1)
-project("swordtrack_native" LANGUAGES C CXX)
+project("swordnote_native" LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -27,22 +27,22 @@ set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp)
 
 # =============================================================================
-# SWORDTRACK JNI BRIDGE
+# SWORDNOTE JNI BRIDGE
 # Mirrors CupCake's llama_jni.cpp pattern.
 # Exposes: initModel, recognizeImage, generateText, release, isLoaded
 # =============================================================================
-add_library(swordtrack_jni SHARED
-    swordtrack_jni.cpp
+add_library(swordnote_jni SHARED
+    swordnote_jni.cpp
 )
 
-target_include_directories(swordtrack_jni PRIVATE
+target_include_directories(swordnote_jni PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp/include
     ${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp/ggml/include
     ${CMAKE_CURRENT_SOURCE_DIR}/third_party/llama.cpp/ggml/src
 )
 
-target_link_libraries(swordtrack_jni PRIVATE
+target_link_libraries(swordnote_jni PRIVATE
     llama
     ${CMAKE_DL_LIBS}
     ${CMAKE_THREAD_LIBS_INIT}
@@ -50,7 +50,7 @@ target_link_libraries(swordtrack_jni PRIVATE
     android
 )
 
-target_compile_options(swordtrack_jni PRIVATE
+target_compile_options(swordnote_jni PRIVATE
     -O3
     -DNDEBUG
     -Wall -Wextra -Wpedantic

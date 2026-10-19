@@ -5,8 +5,8 @@ import 'ui/screens/home_screen.dart';
 import 'ui/screens/canvas_screen.dart';
 import 'ui/screens/cad_screen.dart';
 
-class SwordTrackApp extends ConsumerWidget {
-  const SwordTrackApp({super.key});
+class SwordNoteApp extends ConsumerWidget {
+  const SwordNoteApp({super.key});
 
   static final colorScheme = ColorScheme.fromSeed(
     seedColor: const Color(0xFF0EA5E9), // sky-500
@@ -30,7 +30,7 @@ class SwordTrackApp extends ConsumerWidget {
       ),
     );
     return MaterialApp(
-      title: 'SwordTrack',
+      title: 'SwordNote',
       debugShowCheckedModeBanner: false,
       theme: theme,
       initialRoute: '/',

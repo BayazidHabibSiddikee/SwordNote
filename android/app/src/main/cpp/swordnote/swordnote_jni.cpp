@@ -1,4 +1,4 @@
-// SwordTrack JNI Bridge — mirrors CupCake's llama_jni.cpp pattern.
+// SwordNote JNI Bridge — mirrors CupCake's llama_jni.cpp pattern.
 //
 // Exposes to Flutter/Dart via platform channel:
 //   - initModel(path, nctx, nthreads, nbatch) → int
@@ -23,7 +23,7 @@
 #include <android/log.h>
 #include "llama.h"
 
-#define LOG_TAG "SwordTrack"
+#define LOG_TAG "SwordNote"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
@@ -117,7 +117,7 @@ static void emit_error(JNIEnv* env, const std::string& error) {
 // =============================================================================
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com_swordtrack_swordtrack_ModelService_initModel(
+Java_com_swordnote_swordnote_ModelService_initModel(
     JNIEnv* env, jobject thiz,
     jstring model_path, jint n_ctx, jint n_threads, jint n_batch) {
 
@@ -162,7 +162,7 @@ Java_com_swordtrack_swordtrack_ModelService_initModel(
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_swordtrack_swordtrack_ModelService_setCallback(
+Java_com_swordnote_swordnote_ModelService_setCallback(
     JNIEnv* env, jobject thiz, jobject callback) {
 
     env->GetJavaVM(&g_jvm);
@@ -176,7 +176,7 @@ Java_com_swordtrack_swordtrack_ModelService_setCallback(
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_swordtrack_swordtrack_ModelService_setSamplingParams(
+Java_com_swordnote_swordnote_ModelService_setSamplingParams(
     JNIEnv* env, jobject thiz,
     jfloat temp, jfloat top_p, jint top_k,
     jfloat repeat_penalty, jint repeat_last_n, jint seed, jint max_tokens) {
@@ -193,7 +193,7 @@ Java_com_swordtrack_swordtrack_ModelService_setSamplingParams(
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com_swordtrack_swordtrack_ModelService_generateText(
+Java_com_swordnote_swordnote_ModelService_generateText(
     JNIEnv* env, jobject thiz, jstring prompt) {
 
     if (!g_ctx || !g_model) {
@@ -328,12 +328,12 @@ Java_com_swordtrack_swordtrack_ModelService_generateText(
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_swordtrack_swordtrack_ModelService_cancel(JNIEnv* env, jobject thiz) {
+Java_com_swordnote_swordnote_ModelService_cancel(JNIEnv* env, jobject thiz) {
     g_should_stop = true;
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_com_swordtrack_swordtrack_ModelService_release(JNIEnv* env, jobject thiz) {
+Java_com_swordnote_swordnote_ModelService_release(JNIEnv* env, jobject thiz) {
     g_cache_tokens.clear();
     if (g_ctx) { llama_free(g_ctx); g_ctx = nullptr; }
     if (g_model) { llama_free_model(g_model); g_model = nullptr; }
@@ -343,17 +343,17 @@ Java_com_swordtrack_swordtrack_ModelService_release(JNIEnv* env, jobject thiz) {
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
-Java_com_swordtrack_swordtrack_ModelService_isLoaded(JNIEnv* env, jobject thiz) {
+Java_com_swordnote_swordnote_ModelService_isLoaded(JNIEnv* env, jobject thiz) {
     return g_ctx != nullptr && g_model != nullptr ? JNI_TRUE : JNI_FALSE;
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
-Java_com_swordtrack_swordtrack_ModelService_isGenerating(JNIEnv* env, jobject thiz) {
+Java_com_swordnote_swordnote_ModelService_isGenerating(JNIEnv* env, jobject thiz) {
     return g_is_generating.load() ? JNI_TRUE : JNI_FALSE;
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_swordtrack_swordtrack_ModelService_getModelInfo(JNIEnv* env, jobject thiz) {
+Java_com_swordnote_swordnote_ModelService_getModelInfo(JNIEnv* env, jobject thiz) {
     if (!g_model) return env->NewStringUTF("Not loaded");
 
     std::string info = "Model: Qwen2.5-0.5B\n";
@@ -365,7 +365,7 @@ Java_com_swordtrack_swordtrack_ModelService_getModelInfo(JNIEnv* env, jobject th
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com_swordtrack_swordtrack_ModelService_analyzeImage(
+Java_com_swordnote_swordnote_ModelService_analyzeImage(
     JNIEnv* env, jobject thiz, jstring image_path) {
 
     // TODO: Implement image analysis using the vision model.

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Core theme constants for SwordTrack.
+/// Core theme constants for SwordNote.
 abstract class AppTheme {
   static const Color primary = Color(0xFF0EA5E9);      // sky-500
   static const Color surface = Color(0xFF0F172A);      // slate-900

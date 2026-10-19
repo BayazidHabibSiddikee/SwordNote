@@ -1,4 +1,4 @@
-# SwordTrack Backend
+# SwordNote Backend
 
 Phase-2 server that serves the ADSKAILab/Zero-To-CAD-Qwen3-VL-2B model
 for multi-view → CadQuery generation.
@@ -21,10 +21,10 @@ pip install -r requirements.txt
 
 ```bash
 # Start the FastAPI server (default port 18765)
-python main.py
+uvicorn app:app --port 18765
 
 # Or with custom port
-python main.py --port 8080
+uvicorn app:app --port 8080
 ```
 
 ## API
@@ -43,5 +43,5 @@ First run will download ~4.2 GB.
 
 ```bash
 export HF_ENDPOINT=https://hf-mirror.com  # optional: use mirror
-python main.py
+uvicorn app:app --port 18765
 ```

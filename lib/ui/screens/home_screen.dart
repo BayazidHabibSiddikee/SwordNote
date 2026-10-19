@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:swordtrack/providers/model_providers.dart';
+import 'package:swordnote/providers/model_providers.dart';
 
 /// Home screen — quick actions + recent notes
 class HomeScreen extends ConsumerStatefulWidget {
@@ -29,7 +29,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SwordTrack'),
+        title: const Text('SwordNote'),
         actions: [
           IconButton(
             icon: Icon(Icons.settings_outlined, color: _modelReady ? Colors.green : Colors.orange),
@@ -144,7 +144,7 @@ class _Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        'SwordTrack v1.0 · Handwriting-first STEM notebook',
+        'SwordNote v1.0 · Handwriting-first STEM notebook',
         style: TextStyle(fontSize: 11, color: Colors.grey[600]),
       ),
     );
